@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Scenebot.style">
+    <SolidColorBrush x:Key="primary" Color="#2E292D"/>
+    <SolidColorBrush x:Key="primRed" Color="#EF6562" />
+    <SolidColorBrush x:Key="primYellow" Color="#F3BE4E" />
+    <SolidColorBrush x:Key="secondary" Color="#363135"/>
+</ResourceDictionary>
