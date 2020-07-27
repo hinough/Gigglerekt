@@ -7,16 +7,16 @@
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
+        <Setter Property="FontSize" Value="8"/>
         <Setter Property="FontWeight" Value="Bold" />
-        <Setter Property="Foreground" Value="#ffffff" />
         <Setter Property="Height" Value="15"/>
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="Padding" Value="0 0 0 0" />
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="Width" Value="15" />
+        <Setter Property="Width" Value="30" />
 
         <Setter Property="Template">
             <Setter.Value>
@@ -40,14 +40,14 @@
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ColorAnimation Storyboard.TargetProperty="Background.Color" Duration="0:0:.2" To="#9479E7" />
+                                        <ColorAnimation Storyboard.TargetProperty="Background.Color" Duration="0:0:.2" To="#9F4341" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.EnterActions>
                             <Trigger.ExitActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ColorAnimation Storyboard.TargetProperty="Background.Color" Duration="0:0:.2" To="Transparent" />
+                                        <ColorAnimation Storyboard.TargetProperty="Background.Color" Duration="0:0:.2" To="#EF6562" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.ExitActions>
@@ -67,16 +67,16 @@
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontFamily" Value="Segoe MDL2 Assets" />
+        <Setter Property="FontSize" Value="8"/>
         <Setter Property="FontWeight" Value="Bold" />
-        <Setter Property="Foreground" Value="#ffffff" />
         <Setter Property="Height" Value="15"/>
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="HorizontalContentAlignment" Value="Center" />
         <Setter Property="Padding" Value="0 0 0 0" />
         <Setter Property="VerticalAlignment" Value="Top" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="Width" Value="15" />
+        <Setter Property="Width" Value="30" />
 
         <Setter Property="Template">
             <Setter.Value>
@@ -100,14 +100,14 @@
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ColorAnimation Storyboard.TargetProperty="Background.Color" Duration="0:0:.2" To="#9479E7" />
+                                        <ColorAnimation Storyboard.TargetProperty="Background.Color" Duration="0:0:.2" To="#A27E34" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.EnterActions>
                             <Trigger.ExitActions>
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <ColorAnimation Storyboard.TargetProperty="Background.Color" Duration="0:0:.2" To="Transparent" />
+                                        <ColorAnimation Storyboard.TargetProperty="Background.Color" Duration="0:0:.2" To="#F3BE4E" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.ExitActions>

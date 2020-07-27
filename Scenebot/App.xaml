@@ -10,6 +10,7 @@
 
                 <ResourceDictionary Source="style/border.xaml"/>
                 <ResourceDictionary Source="style/button.xaml"/>
+                <ResourceDictionary Source="style/label.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
