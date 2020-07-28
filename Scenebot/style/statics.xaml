@@ -2,10 +2,16 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Scenebot.style">
     <SolidColorBrush x:Key="foreground" Color="White" />
-    <SolidColorBrush x:Key="primary" Color="#2E292D"/>
-    <SolidColorBrush x:Key="primRed" Color="#EF6562" />
-    <SolidColorBrush x:Key="primYellow" Color="#F3BE4E" />
-    <SolidColorBrush x:Key="secondRed" Color="#9F4341" />
-    <SolidColorBrush x:Key="secondYellow" Color="#A27E34" />
+    <SolidColorBrush x:Key="primary" Color="#1E1E1E"/>
     <SolidColorBrush x:Key="secondary" Color="#363135"/>
+
+    <LinearGradientBrush x:Key="gradient" StartPoint="0 0" EndPoint="0 1">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Offset="0.1" Color="#A22AD9" />
+            <GradientStop Offset="1" Color="#8445E1" />
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+
+    <FontFamily x:Key="opensans">pack://application:,,,/font/#Open Sans</FontFamily>
 </ResourceDictionary>

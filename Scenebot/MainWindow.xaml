@@ -6,17 +6,30 @@
         xmlns:local="clr-namespace:Scenebot"
         mc:Ignorable="d"
         Title="Gigglerekt Scenebot" 
-        Height="450" Width="800"
+        Height="500" Width="800"
         WindowStyle="None"
         ResizeMode="NoResize"
         AllowsTransparency="True"
         Background="Transparent">
     <Border Style="{StaticResource mainBorder}" MouseDown="moveWindow">
         <Grid>
-            <Label Style="{StaticResource titleLabel}" Content="Gigglerekt Scenebot" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30"/>
-            <Button Style="{StaticResource closeButton}" Margin="765,5,0,0" Click="closeWindow"/>
-            <Button Style="{StaticResource minimizeButton}" Margin="730,5,0,0" Click="minimizeWindow"/>
+            <Border Style="{StaticResource navBorder}" Margin="5,5,745,5">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0 0" EndPoint="0 1">
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStop Offset="0.1" Color="#A22AD9" />
+                            <GradientStop Offset="1" Color="#8445E1" />
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid>
+                    <Image HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="45" Source="image/icon_silver.png" Margin="2,2,0,0"/>
 
+                </Grid>
+            </Border>
+            <Button Style="{StaticResource defaultButton}" Content="Exit" HorizontalAlignment="Left" Margin="645,465,0,0" VerticalAlignment="Top" Width="150" Height="30" Click="closeWindow"/>
+            <Button Style="{StaticResource defaultButton}" Content="" Tag="min" HorizontalAlignment="Left" Margin="620,465,0,0" VerticalAlignment="Top" Width="20" Height="30" Click="minimizeWindow"/>
+            <Button Style="{StaticResource defaultButton}" Content="Connect" HorizontalAlignment="Left" Margin="465,465,0,0" VerticalAlignment="Top" Width="150" Height="30"/>
 
         </Grid>
     </Border>
