@@ -28,7 +28,6 @@
                 </Grid>
             </Border>
             <Button Style="{StaticResource defaultButton}" Content="Exit" HorizontalAlignment="Left" Margin="645,465,0,0" VerticalAlignment="Top" Width="150" Height="30" Click="closeWindow"/>
-            <Button Style="{StaticResource defaultButton}" Content="" Tag="min" HorizontalAlignment="Left" Margin="620,465,0,0" VerticalAlignment="Top" Width="20" Height="30" Click="minimizeWindow"/>
             <Button Style="{StaticResource defaultButton}" Content="Connect" HorizontalAlignment="Left" Margin="465,465,0,0" VerticalAlignment="Top" Width="150" Height="30"/>
 
         </Grid>

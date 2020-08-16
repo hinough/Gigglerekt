@@ -4,6 +4,7 @@
     <SolidColorBrush x:Key="foreground" Color="White" />
     <SolidColorBrush x:Key="primary" Color="#1E1E1E"/>
     <SolidColorBrush x:Key="secondary" Color="#363135"/>
+    <SolidColorBrush x:Key="tertiary" Color="#333333" />
 
     <LinearGradientBrush x:Key="gradient" StartPoint="0 0" EndPoint="0 1">
         <LinearGradientBrush.GradientStops>

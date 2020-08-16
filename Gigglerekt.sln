@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Scenebot", "Scenebot\Scenebot.csproj", "{5F60C838-EAB5-4400-B06D-4C6E6450DCF4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "obs-websocket", "obs-websocket\obs-websocket.csproj", "{57D59049-B94C-4467-B8CF-60AF1B30A029}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Websocket-Tester", "Websocket-Tester\Websocket-Tester.csproj", "{227E0495-7BA1-4F57-9C7E-EF201FA647A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{5F60C838-EAB5-4400-B06D-4C6E6450DCF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F60C838-EAB5-4400-B06D-4C6E6450DCF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F60C838-EAB5-4400-B06D-4C6E6450DCF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57D59049-B94C-4467-B8CF-60AF1B30A029}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57D59049-B94C-4467-B8CF-60AF1B30A029}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57D59049-B94C-4467-B8CF-60AF1B30A029}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57D59049-B94C-4467-B8CF-60AF1B30A029}.Release|Any CPU.Build.0 = Release|Any CPU
+		{227E0495-7BA1-4F57-9C7E-EF201FA647A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{227E0495-7BA1-4F57-9C7E-EF201FA647A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{227E0495-7BA1-4F57-9C7E-EF201FA647A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{227E0495-7BA1-4F57-9C7E-EF201FA647A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
