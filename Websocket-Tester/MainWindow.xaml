@@ -5,9 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Websocket_Tester"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="MainWindow" Height="546.235" Width="800" Loaded="Window_Loaded">
     <Grid>
-        <TextBlock x:Name="tbOutput" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="399" Width="772"/>
+        <TextBlock x:Name="tbOutput" ScrollViewer.VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="399" Width="772"/>
+        <Button Content="Get Scene List" HorizontalAlignment="Left" Margin="10,414,0,0" VerticalAlignment="Top" Width="772" Click="Button_Click"/>
+        <Label x:Name="lblactive" Content="Active Scene: " HorizontalAlignment="Left" Margin="10,439,0,0" VerticalAlignment="Top" Width="260"/>
+        <ComboBox x:Name="cbScenes" HorizontalAlignment="Left" Margin="275,439,0,0" VerticalAlignment="Top" Width="250" Height="26"/>
+        <Button Content="Change to scene" HorizontalAlignment="Left" Margin="530,439,0,0" VerticalAlignment="Top" Width="252" Height="26" Click="Button_Click_1"/>
+        <Button Content="Mute Audio Output 1" HorizontalAlignment="Left" Margin="10,470,0,0" VerticalAlignment="Top" Width="379" Click="Button_Click_2"/>
+        <Button Content="Unmute Audio Output 1" HorizontalAlignment="Left" Margin="394,470,0,0" VerticalAlignment="Top" Width="388" Click="Button_Click_3"/>
 
     </Grid>
 </Window>

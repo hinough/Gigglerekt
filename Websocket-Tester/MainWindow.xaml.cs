@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Threading;
 
 using obs_websocket;
+using obs_websocket.Types;
 
 namespace Websocket_Tester
 {
@@ -39,7 +40,36 @@ namespace Websocket_Tester
             con.onDisconnected += Con_onDisconnected;
             con.onInformation += Con_onInformation;
 
+            con.onActiveSceneChange += Con_onActiveSceneChange;
+            con.onScenelistUpdate += Con_onScenelistUpdate;
+
             con.connect(); 
+        }
+
+        private void Con_onActiveSceneChange(object sender, string e)
+        {
+            this.Dispatcher.Invoke(() =>
+            {
+                lblactive.Content = "Active scene: " + e;
+                tbOutput.Text += "Active scene changed to "+ e + "\n";
+            });
+        }
+
+        private void Con_onScenelistUpdate(object sender, List<Scene> scenes)
+        {
+            this.Dispatcher.Invoke(() =>
+            {
+                cbScenes.Items.Clear();
+
+                foreach (Scene scene in scenes)
+                {
+                    cbScenes.Items.Add(scene.name);
+                }
+
+                cbScenes.SelectedItem = ((string)lblactive.Content).Replace("Active scene: ", "");
+
+                tbOutput.Text += "Scenelist updated\n";
+            });
         }
 
         private void Con_onDisconnected(object sender, string e)
@@ -85,6 +115,26 @@ namespace Websocket_Tester
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
            init();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            con.getSceneList();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            con.setCurrentScene((string)cbScenes.SelectedItem);
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            con.setMute("Audio Output 1", true);
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            con.setMute("Audio Output 1", false);
         }
     }
 }

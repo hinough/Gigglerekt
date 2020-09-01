@@ -4,7 +4,7 @@ using System.Text;
 
 namespace obs_websocket.Types
 {
-    class SceneItem
+    public class SceneItem
     {
         public bool locked;             //True if item is locked, false if unlocked
         public bool muted;              //True if item is muted, false if unmuted

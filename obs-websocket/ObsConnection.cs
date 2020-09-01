@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using obs_websocket.Types;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,14 +16,10 @@ namespace obs_websocket
 {
     public class ObsConnection
     {
-        public event EventHandler<string> onAuthFailed = null;
-        public event EventHandler<string> onAuthSuccess = null;
-        public event EventHandler<string> onConnected = null;
-        public event EventHandler<string> onDisconnected = null;
-        public event EventHandler<string> onInformation = null;
-
         private string ip;
         private string password;
+
+        private List<Scene> scenes = null;
 
         private WebSocket ws;
 
@@ -49,10 +47,41 @@ namespace obs_websocket
                 } 
                 catch (Exception e)
                 {
-                    Console.Out.WriteLine("asdasdasdas");
+                    Console.Out.WriteLine("I should detect wrong IP input, but Im not... (╯°□°）╯︵ ┻━┻");
                 }
             }).Start();
         }
+
+        ////////////////////////////////////////////////REQUESTS////////////////////////////////////////////////
+        public void getSceneList()
+        {
+            ws.Send(generateJsonRequest("GetSceneList","getscenelist"));
+        }
+
+        public void getCurrentScene()
+        {
+            ws.Send(generateJsonRequest("GetCurrentScene", "activesceneupdate"));
+        }
+
+        public void setCurrentScene(string scenename)
+        {
+            string[] headers = { "scene-name" };
+            string[] data = { scenename };
+
+            ws.Send(generateJsonRequest("SetCurrentScene", "setactivescene", headers, data));
+        }
+
+        public void setMute(string source, bool mute)
+        {
+            string[] headers = { "source", "mute" };
+            object[] data = {source, mute };
+
+            ws.Send(generateJsonRequest("SetMute", "setmute", headers, data));
+        }
+
+
+
+
 
         private void authenticate(Dictionary<string,object> data)
         {
@@ -94,7 +123,7 @@ namespace obs_websocket
             }
         }
 
-        private string generateJsonRequest(string header, string id, string[]headers = null, string[] data = null)
+        private string generateJsonRequest(string header, string id, string[]headers = null, object[] data = null)
         {
             StringBuilder sb = new StringBuilder();
             StringWriter  sw = new StringWriter(sb);
@@ -114,7 +143,16 @@ namespace obs_websocket
                     for(int i = 0; i < headers.Length; i++)
                     {
                         writer.WritePropertyName(headers[i]);
-                        writer.WriteValue(data[i]);
+                        
+                        if (data[i].GetType() == typeof(bool))
+                        {
+                            writer.WriteValue((bool)data[i]);
+                        }
+                            
+
+                        if (data[i].GetType() == typeof(string))
+                            writer.WriteValue((string)data[i]);
+
                     }
                 }
 
@@ -128,30 +166,106 @@ namespace obs_websocket
         {
             Dictionary<string, object> response =  JsonConvert.DeserializeObject<Dictionary<string, object>>(e.Data);
 
-            switch(response["message-id"])
+            //If message received is a response
+            if (response.ContainsKey("message-id"))
             {
-                case "auth":
-                    {
-                        if(response["status"].Equals("ok"))
+                switch (response["message-id"])
+                {
+                    case "auth":
                         {
-                            onAuthSuccess?.Invoke(this, "Authenticated");
-                            onConnected?.Invoke(this, "Connected");
+                            if (response["status"].Equals("ok"))
+                            {
+                                onAuthSuccess?.Invoke(this, "Authenticated");
+                                onConnected?.Invoke(this, "Connected");
+                            }
+                            else
+                            {
+                                ws.Close();
+                                onAuthFailed?.Invoke(this, "Authentication failed");
+                                onDisconnected?.Invoke(this, "Disconnected");
+                            }
+                            break;
                         }
-                        else
-                        {
-                            ws.Close();
-                            onAuthFailed?.Invoke(this, "Authentication failed");
-                            onDisconnected?.Invoke(this, "Disconnected");
-                        }
-                        break;
-                    }
 
-                case "authcheck":
-                    {
-                        authenticate(response);
-                        break;
-                    }
+                    case "authcheck":
+                        {
+                            authenticate(response);
+                            break;
+                        }
+
+                    case "activesceneupdate":
+                        {
+                            updateActiveScene((string)response["name"]);
+                            break;
+                        }
+
+                    case "getscenelist":
+                        {
+                            updateSceneList((string)response["current-scene"], response["scenes"]);
+                            break;
+                        }
+
+                    default:
+                        {
+                            break;
+                        }
+                }
             }
+
+
+            //If message received is a event
+            else if(response.ContainsKey("update-type"))
+            {
+                switch(response["update-type"])
+                {
+                    case "SwitchScenes":
+                        {
+                            onActiveSceneChange?.Invoke(this, (string)response["scene-name"]);
+                            break;
+                        }
+
+                    default:
+                        {
+                            Console.Out.WriteLine("Unknown update: " + response["update-type"]);
+                            break;
+                        }
+                }
+            }
+            
         }
+
+        private void updateActiveScene(string name)
+        {
+            foreach (Scene scene in this.scenes)
+            {
+                if (scene.name.Equals(name)) this.activeScene = scene.name;
+            }
+
+            onActiveSceneChange?.Invoke(this, this.activeScene);
+        }
+
+        private void updateSceneList(string active, object scenes)
+        {
+            this.scenes = ((JArray)scenes).ToObject<List<Scene>>();
+
+            foreach(Scene scene in this.scenes)
+            {
+                if (scene.name.Equals(active)) activeScene = scene.name;
+            }
+
+            onActiveSceneChange?.Invoke(this, this.activeScene);
+            onScenelistUpdate?.Invoke(this, this.scenes);
+        }
+
+        public string activeScene = null;
+
+        public event EventHandler<string> onAuthFailed = null;
+        public event EventHandler<string> onAuthSuccess = null;
+        public event EventHandler<string> onConnected = null;
+        public event EventHandler<string> onDisconnected = null;
+        public event EventHandler<string> onInformation = null;
+
+        public event EventHandler<string> onActiveSceneChange = null;
+        public event EventHandler<List<Scene>> onScenelistUpdate = null;
     }
 }
