@@ -5,20 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Crude_Bot"
         mc:Ignorable="d"
-        Title="Gigglerekt Scenebot v0.1 Alpha" Height="365" Width="638">
+        Title="Gigglerekt Scenebot v0.1 Alpha" Height="272" Width="638"
+        ResizeMode="NoResize">
     <Grid>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="89" Margin="10,10,0,0" VerticalAlignment="Top" Width="598">
-            <Grid>
-                <Label Content="Twitch Settings" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16"/>
-                <Label Content="Username" HorizontalAlignment="Left" Margin="7,31,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="tbTwitchUsername" HorizontalAlignment="Left" Height="23" Margin="10,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190"/>
-                <Label Content="Twitch Token" HorizontalAlignment="Left" Margin="200,31,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="tbTwitchToken" HorizontalAlignment="Left" Height="23" Margin="205,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190"/>
-                <Label Content="Channel to join" HorizontalAlignment="Left" Margin="395,31,0,0" VerticalAlignment="Top"/>
-                <TextBox x:Name="tbTwitchChannel" HorizontalAlignment="Left" Height="23" Margin="400,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190"/>
-            </Grid>
-        </Border>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="89" Margin="10,104,0,0" VerticalAlignment="Top" Width="598">
             <Grid>
                 <Label Content="OBS Settings" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16"/>
                 <Label Content="OBS IP Address" HorizontalAlignment="Left" Margin="7,31,0,0" VerticalAlignment="Top"/>
@@ -29,12 +19,19 @@
                 <TextBox x:Name="tbObsPassword" HorizontalAlignment="Left" Height="23" Margin="400,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190"/>
             </Grid>
         </Border>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="89" Margin="10,198,0,0" VerticalAlignment="Top" Width="598">
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="89" Margin="10,104,0,0" VerticalAlignment="Top" Width="598">
             <Grid>
                 <Label Content="Bot Status" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="OBS" HorizontalAlignment="Left" Margin="10,31,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="lblObsStatus" Content="Disconnected" HorizontalAlignment="Left" Margin="10,57,0,0" VerticalAlignment="Top" Width="284"/>
+                <Label Content="TWITCH" HorizontalAlignment="Left" Margin="299,31,0,0" VerticalAlignment="Top"/>
+                <Label x:Name="lblTwitchStatus" Content="Disconnected from twitch" HorizontalAlignment="Left" Margin="299,57,0,0" VerticalAlignment="Top" Width="287"/>
+                <TextBox x:Name="tbTwitchCD" HorizontalAlignment="Left" Height="23" Margin="536,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" Text="5"/>
+                <Label Content="Cooldown" HorizontalAlignment="Left" Margin="472,7,0,0" VerticalAlignment="Top"/>
             </Grid>
         </Border>
-        <Button Content="Connect" HorizontalAlignment="Left" Margin="10,292,0,0" VerticalAlignment="Top" Width="598"/>
+        <Button x:Name="btnCDC" Content="Connect to Twitch" HorizontalAlignment="Left" Margin="311,198,0,0" VerticalAlignment="Top" Width="297" Click="connectDisconnect"/>
+        <Button x:Name="btnObsCDC" Content="Connect to OBS" HorizontalAlignment="Left" Margin="10,198,0,0" VerticalAlignment="Top" Width="296" Click="connectDisconnectOBS"/>
 
     </Grid>
 </Window>

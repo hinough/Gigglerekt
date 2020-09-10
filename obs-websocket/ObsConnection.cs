@@ -21,6 +21,8 @@ namespace obs_websocket
 
         private List<Scene> scenes = null;
 
+        private ObsStats stats = null;
+
         private WebSocket ws;
 
         public ObsConnection( string ip, string port = "80", string password = null)
@@ -52,10 +54,25 @@ namespace obs_websocket
             }).Start();
         }
 
+        public void disconnect()
+        {
+            ws.Close();
+        }
+
+        public bool isConnected()
+        {
+            return ws.IsAlive;
+        }
+
         ////////////////////////////////////////////////REQUESTS////////////////////////////////////////////////
         public void getSceneList()
         {
             ws.Send(generateJsonRequest("GetSceneList","getscenelist"));
+        }
+
+        public void getStats()
+        {
+            ws.Send(generateJsonRequest("GetStats", "getstats"));
         }
 
         public void getCurrentScene()
@@ -205,6 +222,12 @@ namespace obs_websocket
                             break;
                         }
 
+                    case "getstats":
+                        {
+                            updateStats((JObject)response["stats"]);
+                            break;
+                        }
+
                     default:
                         {
                             break;
@@ -257,6 +280,13 @@ namespace obs_websocket
             onScenelistUpdate?.Invoke(this, this.scenes);
         }
 
+        private void updateStats(JObject stats)
+        {
+            this.stats = JsonConvert.DeserializeObject<ObsStats>(stats.ToString());
+
+            onStatsUpdate?.Invoke(this, this.stats);
+        }
+
         public string activeScene = null;
 
         public event EventHandler<string> onAuthFailed = null;
@@ -267,5 +297,6 @@ namespace obs_websocket
 
         public event EventHandler<string> onActiveSceneChange = null;
         public event EventHandler<List<Scene>> onScenelistUpdate = null;
+        public event EventHandler<ObsStats> onStatsUpdate = null;
     }
 }

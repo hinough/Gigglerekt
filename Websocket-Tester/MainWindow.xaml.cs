@@ -43,7 +43,27 @@ namespace Websocket_Tester
             con.onActiveSceneChange += Con_onActiveSceneChange;
             con.onScenelistUpdate += Con_onScenelistUpdate;
 
+            con.onStatsUpdate += Con_onStatsUpdate;
+
             con.connect(); 
+        }
+
+        private void Con_onStatsUpdate(object sender, ObsStats e)
+        {
+            this.Dispatcher.Invoke(() =>
+            {
+                tbOutput.Text += "OBS STATS:\n";
+                tbOutput.Text += "\tFPS: " + e.fps + "\n";
+                tbOutput.Text += "\tRender Total: " + e.rendertotal + "\n";
+                tbOutput.Text += "\tRender Missed: " + e.rendermissed + "\n";
+                tbOutput.Text += "\tOutput Total: " + e.outputtotal + "\n";
+                tbOutput.Text += "\tOutput Skipped: " + e.outputskipped + "\n";
+                tbOutput.Text += "\tAvg frametime: " + e.frametime + "\n";
+                tbOutput.Text += "-----------------------------------------\n";
+                tbOutput.Text += "\tCPU Usage: " + e.cpu + "%\n";
+                tbOutput.Text += "\tMemory Usage: " + e.memory + "MB\n";
+                tbOutput.Text += "\tFree Diskspace: " + e.disk + "MB\n";
+            });
         }
 
         private void Con_onActiveSceneChange(object sender, string e)
@@ -127,14 +147,9 @@ namespace Websocket_Tester
             con.setCurrentScene((string)cbScenes.SelectedItem);
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            con.setMute("Audio Output 1", true);
-        }
-
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            con.setMute("Audio Output 1", false);
+            con.getStats();
         }
     }
 }

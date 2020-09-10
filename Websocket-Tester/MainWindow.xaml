@@ -12,8 +12,7 @@
         <Label x:Name="lblactive" Content="Active Scene: " HorizontalAlignment="Left" Margin="10,439,0,0" VerticalAlignment="Top" Width="260"/>
         <ComboBox x:Name="cbScenes" HorizontalAlignment="Left" Margin="275,439,0,0" VerticalAlignment="Top" Width="250" Height="26"/>
         <Button Content="Change to scene" HorizontalAlignment="Left" Margin="530,439,0,0" VerticalAlignment="Top" Width="252" Height="26" Click="Button_Click_1"/>
-        <Button Content="Mute Audio Output 1" HorizontalAlignment="Left" Margin="10,470,0,0" VerticalAlignment="Top" Width="379" Click="Button_Click_2"/>
-        <Button Content="Unmute Audio Output 1" HorizontalAlignment="Left" Margin="394,470,0,0" VerticalAlignment="Top" Width="388" Click="Button_Click_3"/>
+        <Button Content="Update Stats" HorizontalAlignment="Left" Margin="10,470,0,0" VerticalAlignment="Top" Width="772" Click="Button_Click_3"/>
 
     </Grid>
 </Window>
